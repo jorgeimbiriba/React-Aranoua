@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     },
     botaoReset: {
       backgroundColor: '#96a5a6',
-        width: '100%',
+        width: 100,
     },
     botaoMais: {
       backgroundColor: '#2ecc71',
