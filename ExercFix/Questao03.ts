@@ -1,4 +1,4 @@
-interface Produto{
+    interface Produto{
     id: number,
     nome:string,
     emEstoque:boolean
