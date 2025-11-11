@@ -1,6 +1,7 @@
 function converterParaNumero (entrada:string): number | string{
     const numeroConvertido:number = parseFloat(entrada)
 
+    // @ts-ignore
     return !Number.isNaN(numeroConvertido)
 
     ? numeroConvertido : "Entrada Inválida"
