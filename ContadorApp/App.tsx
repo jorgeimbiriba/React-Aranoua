@@ -4,31 +4,87 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 export default function App() {
   //Declara estado
   const [contador, setContador] = useState(0);
-  return (
-    <View style={styles.container}>
-      <Text style ={styles.titulo}>Contador</Text>
-        <Text style ={styles.numero}>{contador}</Text>
 
-        <View style={styles.botoesContainer}>
-            <TouchableOpacity style = {[styles.botao, styles.botaoMenos]}
-            onPress={() => setContador(contador - 1)}>
-            <Text style = {styles.textoBotao}>-</Text>
-            </TouchableOpacity>
+  const getCorNumero = () => {
+      if (contador > 0) return '#2ecc71';
+      if (contador < 0) return '#e74c3c'
+  };
 
-            <TouchableOpacity style = {[styles.botao, styles.botaoReset]}
-                              onPress={() => setContador(0)}>
-                <Text style = {styles.textoBotao}>Reset</Text>
-            </TouchableOpacity>
+  const incrementar = (valor: number) => {
+      setContador(contador + valor);
+  }
 
-            <TouchableOpacity style = {[styles.botao, styles.botaoMais]}
-                              onPress={() => setContador(contador + 1)}>
-                <Text style = {styles.textoBotao}>+</Text>
-            </TouchableOpacity>
+    return (
+        <View style={styles.container}>
+            <Text style={styles.titulo}>Contador Avançado</Text>
+            <Text style={[styles.numero, { color: getCorNumero() }]}>
+                {contador}
+            </Text>
 
+            {/* Botões principais */}
+            <View style={styles.botoesContainer}>
+                <TouchableOpacity
+                    style={[styles.botao, styles.botaoMenos]}
+                    onPress={() => incrementar(-1)}
+                >
+                    <Text style={styles.textoBotao}>-1</Text>
+                </TouchableOpacity>
 
+                <TouchableOpacity
+                    style={[styles.botao, styles.botaoReset]}
+                    onPress={() => setContador(0)}
+                >
+                    <Text style={styles.textoBotao}>Reset</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[styles.botao, styles.botaoMais]}
+                    onPress={() => incrementar(1)}
+                >
+                    <Text style={styles.textoBotao}>+1</Text>
+                </TouchableOpacity>
+            </View>
+
+            {/* Botões extras */}
+            <View style={[styles.botoesContainer, { marginTop: 20 }]}>
+                <TouchableOpacity
+                    style={[styles.botaoPequeno, styles.botaoMenos]}
+                    onPress={() => incrementar(-5)}
+                >
+                    <Text style={styles.textoBotaoPequeno}>-5</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[styles.botaoPequeno, styles.botaoMenos]}
+                    onPress={() => incrementar(-10)}
+                >
+                    <Text style={styles.textoBotaoPequeno}>-10</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[styles.botaoPequeno, styles.botaoMais]}
+                    onPress={() => incrementar(5)}
+                >
+                    <Text style={styles.textoBotaoPequeno}>+5</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={[styles.botaoPequeno, styles.botaoMais]}
+                    onPress={() => incrementar(10)}
+                >
+                    <Text style={styles.textoBotaoPequeno}>+10</Text>
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.info}>
+                <Text style={styles.infoTexto}>
+                    {contador === 0 && '⚪ Neutro'}
+                    {contador > 0 && '🟢 Positivo'}
+                    {contador < 0 && '🔴 Negativo'}
+                </Text>
+            </View>
         </View>
-    </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
@@ -61,6 +117,13 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    botaoPequeno: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     botaoMenos: {
       backgroundColor: '#e74c3c',
     },
@@ -75,5 +138,16 @@ const styles = StyleSheet.create({
      fontSize: 32,
      fontWeight: 'bold',
      color: '#fff',
+    },
+    textoBotaoPequeno: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: '#fff',
+    },
+    info:{
+      marginTop:30,
+    },
+    infoTexto: {
+      fontSize: 20,
     }
 });
