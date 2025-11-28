@@ -21,13 +21,13 @@ export interface ApiResponse <T>{
     error?: string
 }
 
-export type RootStackParamlist = {
+export type RootStackParamList = {
     List: undefined,
-    Detail: {newId: string}
+    Detail: {newsId: string}
 }
 
 //props tipados para navegação
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 
-export type NewsListScreenProps = NativeStackScreenProps <RootStackParamlist, 'List'>
-export type NewsDetailScreenProps = NativeStackScreenProps <RootStackParamlist, 'Detail'>
+export type NewsListScreenProps = NativeStackScreenProps <RootStackParamList, 'List'>
+export type NewsDetailScreenProps = NativeStackScreenProps <RootStackParamList, 'Detail'>

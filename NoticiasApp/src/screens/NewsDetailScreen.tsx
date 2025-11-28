@@ -26,7 +26,7 @@ const NewsDetailScreen: React.FC<NewsDetailScreenProps> = ({ route, navigation }
         setLoading(true);
         const response = await fetchNewsById(newsId);
 
-        if (response.success && response.data) {
+        if (response.sucess && response.data) {
             setNews(response.data);
             setLoading(false);
         } else {
